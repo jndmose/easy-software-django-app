@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% block title %}My Dashboard{% endblock title %}
+{% block body %} 
+
+<br><br><br><br><br><br>
+            <section class="section-bg">
+                            <div class="container">
+                                <h2> Assign Building to Tenant</h2>
+                                <form action="" method="POST" role="form" class="contactForm">
+
+                                    {% csrf_token %}
+                                    {% bootstrap_form buildingTenantForm %}
+                                    {% buttons %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+            {% endbuttons %}
+                                </form>
+                               
+                            </div>                
+            </section>
+
+{% endblock %}

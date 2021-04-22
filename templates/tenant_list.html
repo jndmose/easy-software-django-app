@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+
+<section id="intro" class=" clearfix">
+   <div class=" container d-flex h-100">
+      
+     <div class="row justify-content-center align-self-center">
+        <h2> Tenant List</h2>
+    <table class="table table-hover table-bordered text-center">
+      <tr class="text-center">
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Next of Kin</th>
+        <th>Action</th>
+      </tr>
+      {% for tenant in tenant_list %}
+        <tr>
+          
+          <td>
+            {{ tenant.name }}
+            
+          </td>
+          <td>
+            {{ tenant.email }}
+          </td>
+          <td>
+            {{ tenant.phone }}
+          </td>
+          <td>
+            {{ tenant.next_of_kin }}
+          </td>
+
+          <td>
+            <a class="myLink" href="#" onclick="return getInput_value({{tenant.id}}, this); return false;">
+              <span class="checkmark">
+                <div class="checkmark_circle"></div>
+                <div class="checkmark_stem"></div>
+                <div class="checkmark_kick"></div>
+            </span>
+            </a>
+          
+          <span class="pull-right">
+            <a href="#"  data-balloon="remove this item from cart" class="text-danger" onclick="return confirm_delete();">
+              <i class="fas fa-trash"></i>
+            </a>
+          </span>
+        </td>
+         
+        </tr>
+    
+      {% endfor %}
+
+    </table>
+     
+   </div>
+  </div>
+ </section>
+
+ {% block scripts %}
+ {{ block.super }}
+ <script>
+ function confirm_delete(){
+   return confirm("Do you want to remove this item from cart?");
+ }
+function displayFunction(){
+ var result_style = document.getElementById('result_tr').style;
+ result_style.display = 'table-row';
+}
+
+ function getInput_value(id,elemnt ){
+  
+   newelmnt= $(elemnt).closest('tr').find('input').val();
+   window.location.href="http://127.0.0.1:8000/service/update/first/second/".replace("first",id).replace("second",newelmnt)
+   return false;
+
+ }
+
+ </script>
+{% endblock scripts %}
+ {% endblock %}
